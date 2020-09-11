@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html>
+
+ 
+
+<head>
+
+<meta charset="UTF-8">
+
+<title></title>
+
+<style type="text/css">
+
+#box {
+
+border: 2px solid deeppink;
+
+width: 1000px;
+
+margin: 10px auto;
+
+padding: 10px;
+
+background-color: pink;
+
+color: white;
+
+font-size: 20px;
+
+}
+
+ 
+
+#title {
+
+display: flex;
+
+}
+
+ 
+
+#titleFont {
+
+line-height: 50px;
+
+}
+
+ 
+
+#titleSpace {
+
+height: 50px;
+
+width: 900px;
+
+border: 1px solid deeppink;
+
+outline: deeppink;
+
+font-size: 20px;
+
+color: deepskyblue;
+
+}
+
+ 
+
+#content {
+
+display: flex;
+
+margin-top: 20px;
+
+}
+
+ 
+
+#contentspace {
+
+border: 1px solid deeppink;
+
+outline: deeppink;
+
+font-size: 20px;
+
+height: 300px;
+
+width: 900px;
+
+color: seagreen;
+
+}
+
+ 
+
+#submit {
+
+height: 30px;
+
+width: 100px;
+
+border: 1px solid yellow;
+
+color: crimson;
+
+background-color: white;
+
+font-size: 20px;
+
+outline: none;
+
+cursor: pointer;
+
+margin-left: 60px;
+
+margin-top: 20px;
+
+}
+
+ 
+
+#text {
+
+font-size: 25px;
+
+}
+
+ 
+
+#show {
+
+margin-left: 55px;
+
+margin-top: 20px;
+
+}
+
+ 
+
+li,
+
+ul {
+
+margin: 0;
+
+padding: 0;
+
+list-style-type: none;
+
+}
+
+ 
+
+li {
+
+height: 50%;
+
+line-height: 40px;
+
+text-indent: 20px;
+
+}
+
+ 
+
+ul {
+
+width: 900px;
+
+}
+
+</style>
+
+</head>
+
+ 
+
+<body>
+
+<div id="box">
+
+<div id="title">
+
+<div id="titleFont">标题：</div>
+
+<input type="text" id="titleSpace" />
+
+</div>
+
+<div id="content">
+
+<div id="contentFont">
+
+内容：
+
+</div>
+
+<textarea id="contentspace"></textarea>
+
+ 
+
+</div>
+
+<input type="button" id="submit" value="提交" />
+
+<div id="show">
+
+<div id="text">
+
+爱的告白
+
+</div>
+
+ 
+
+</div>
+
+</div>
+
+</body>
+
+<script type="text/javascript" src="js/tween(1).js">
+
+</script>
+
+<script type="text/javascript">
+
+var btn = document.getElementById("submit");
+
+var tSpace = document.getElementById("titleSpace");
+
+var cSpace = document.getElementById("contentspace");
+
+var show = document.getElementById("show");
+
+var timer = null;
+
+//赋点击事件
+
+btn.onclick = function() {
+
+var str1 = tSpace.value;
+
+var str2 = cSpace.value;
+
+//判断是否为空
+
+if(str1.length == 0 || str2.length == 0) {
+
+alert("爱的表白怎么能少了文字的点缀呢？")
+
+} else {
+
+var ul = document.createElement("ul");
+
+ul.style.marginTop = 10 + "px";
+
+ulHeight(ul);
+
+var liTop = document.createElement("li");
+
+liTop.style.backgroundColor = "cadetblue";
+
+liTop.innerHTML = "❤️" + tSpace.value + "❤️";
+
+ul.appendChild(liTop);
+
+var liBot = document.createElement("li");
+
+liBot.style.backgroundColor = "seagreen";
+
+liBot.innerHTML = "❤️" + cSpace.value + "❤️";
+
+liBot.style.position = "relative";
+
+var a = document.createElement("a");
+
+a.href = "#"
+
+a.innerHTML = "删除";
+
+a.style.position = "absolute";
+
+a.style.right = 10 + "px";
+
+a.onclick = function() {
+
+ 
+
+ul.remove();
+
+}
+
+liBot.appendChild(a);
+
+ 
+
+ul.appendChild(liBot);
+
+show.appendChild(ul);
+
+ 
+
+}
+
+ 
+
+}
+
+//产生高度的函数
+
+function ulHeight(obj) {
+
+ 
+
+var t = 0;
+
+var d = 30;
+
+var b = 0;
+
+var c = 80;
+
+clearInterval(timer);
+
+timer = setInterval(function() {
+
+t++;
+
+if(t >= d) {
+
+clearInterval(timer);
+
+}
+
+ 
+
+obj.style.height = Tween.Bounce.easeOut(t, b, c, d) + "px";
+
+ 
+
+}, 30)
+
+}
+
+</script>
+
+ 
+
+</html>
